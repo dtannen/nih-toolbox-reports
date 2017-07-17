@@ -36,6 +36,7 @@ def create_list(df, low = -math.inf, high = math.inf):
 def create_recommendations(df):
 	db = {
 		"Pain Intensity" : "Will continue to diagnose and treat patient's pain problem.",
+		"Pain Interference" : "Will continue to diagnose and treat patient's pain problem.",
 		"Anger" : "Patient is recommended to practice mindfulness meditation.",
 		"Anxiety" : "Patient may benefit from dual use medication for pain and mood and employing non-pharmacologic strategies such as mindfulness meditation and/or CBT. Consider Psychiatry referral.",
 		"Physical Function" : "Patient will benefit from improvement in physical function through structured activity, including physical therapy and personalized home exercise program.",
@@ -47,7 +48,7 @@ def create_recommendations(df):
 	} 
 
 	df['recommendation'] = df.variable.map(db)
-	df['recommendation'] = df.recommendation.where(df.SD < 1, None)
+	df['recommendation'] = df.recommendation.where(df.SD > 1, None)
 
 	if df.SD.max() < 1:
 		df['recommendation'] = "None at this time, patient is within normal limits across all domains."
