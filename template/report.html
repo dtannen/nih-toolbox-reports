@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title> {{ title }} </title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/skeleton.css">
+
+</head>
+<body>
+	<div class="container">
+		<h1>CENTER FOR INTERVENTIONAL PAIN AND SPINE</h1>
+		<h3>PSYCHOLOGICAL TESTING</h3>
+		<p><strong>Patient Name: </strong>{{ patient_name }}</p>
+		<p><strong>Medical Record Number: </strong>{{ record_number }}</p>
+		<p><strong>Date of Test: </strong>{{ test_date }}</p>
+		
+		<p>Patient Reported Outcomes Measurement Information System (PROMIS) is a system of highly reliable, valid, flexible, precise, and responsive assessment tools that measure patient-reported health status over the past 7 days.</p>
+
+		<p>A higher PROMIS T-score represents more of the concept being measured. For negatively worded concepts like anger, a T-score of 60 is one SD worse than average. By comparison an anger T-score of 40 is one SD better than average. Percentile ranks are compared to normative data from the US population.</p>
+
+		{{ table }}
+
+		<h4>Interpretation:</h4>
+
+		<p>Psychometric testing reviewed in context of patient's overall presentation, clinical history, and treatment course.
+		Pertinent findings in this context include</p>
+
+		<p>Pertinent findings in this context include:</p>
+
+		<blockquote>
+			<p><em>{% if severe_variables %} The patient displays severe {<strong>{{ severe_variables }}</strong>.{% endif %}{% if moderate_variables %} The patient displays moderate <strong>{{ moderate_variables }}</strong>.{% endif %}{% if average_variables %} The patient displays average <strong>{{ average_variables }}</strong>{% endif %}</em></p>
+		</blockquote>
+
+		<h4>Treatment Recommendations:</h4>
+		<p>{{ treatment_recommendations }}</p>
+	</div>
+</body>
+</html>
