@@ -1,103 +1,11 @@
 # nih-toolbox-reports
-This repository creates patient reports for data collected via the (NIH Toolbox)[http://www.healthmeasures.net/explore-measurement-systems/nih-toolbox].
+This repository creates patient reports for data collected via the [NIH Toolbox](http://www.healthmeasures.net/explore-measurement-systems/nih-toolbox) using Python.
 
-## Example
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title> CIP2276 2017-05-07 </title>
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/skeleton.css">
+## Usage
+To create a report, you will need the registration and assessment scores CSV files from the NIH Toolbox. 
 
-</head>
-<body>
-	<div class="container">
-		<h1>CENTER FOR INTERVENTIONAL PAIN AND SPINE</h1>
-		<h3>PSYCHOLOGICAL TESTING</h3>
-		<p><strong>Patient Name: </strong>Test Subject1</p>
-		<p><strong>Medical Record Number: </strong>CIP2276</p>
-		<p><strong>Date of Test: </strong>07/05/2017</p>
-		
-		<p>Patient Reported Outcomes Measurement Information System (PROMIS) is a system of highly reliable, valid, flexible, precise, and responsive assessment tools that measure patient-reported health status over the past 7 days.</p>
-
-		<p>A higher PROMIS T-score represents more of the concept being measured. For negatively worded concepts like anger, a T-score of 60 is one SD worse than average. By comparison an anger T-score of 40 is one SD better than average. Percentile ranks are compared to normative data from the US population.</p>
-
-		<table border="0" class="dataframe u-full-width">
-  <thead>
-    <tr style="text-align: right;">
-      <th>Instrument</th>
-      <th>T-score</th>
-      <th>Percentile</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>PROMIS CAT v1.0 - Anxiety</td>
-      <td>32.9</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <td>PROMIS CAT v1.0 - Depression</td>
-      <td>34.2</td>
-      <td>6</td>
-    </tr>
-    <tr>
-      <td>PROMIS CAT v1.0 - Sleep Disturbance</td>
-      <td>26.3</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <td>PROMIS CAT v1.1 - Anger</td>
-      <td>43.6</td>
-      <td>26</td>
-    </tr>
-    <tr>
-      <td>PROMIS CAT v1.1 - Pain Interference</td>
-      <td>62.9</td>
-      <td>90</td>
-    </tr>
-    <tr>
-      <td>PROMIS CAT v1.2 - Physical Function</td>
-      <td>41.4</td>
-      <td>19</td>
-    </tr>
-    <tr>
-      <td>PROMIS CAT v2.0 - Emotional Support</td>
-      <td>66.2</td>
-      <td>95</td>
-    </tr>
-    <tr>
-      <td>PROMIS CAT v2.0 - Satisfaction Roles Activities</td>
-      <td>68.7</td>
-      <td>97</td>
-    </tr>
-    <tr>
-      <td>PROMIS CAT v2.0 - Social Isolation</td>
-      <td>31.8</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <td>PROMIS Scale v1.0 - Pain Intensity 3a</td>
-      <td>58.6</td>
-      <td>81</td>
-    </tr>
-  </tbody>
-</table>
-
-		<h4>Interpretation:</h4>
-
-		<p>Psychometric testing reviewed in context of patient's overall presentation, clinical history, and treatment course.
-		Pertinent findings in this context include</p>
-
-		<p>Pertinent findings in this context include:</p>
-
-		<blockquote>
-			<p><em> The patient displays moderate <strong>Pain Interference, Satisfaction Roles Activities</strong>. The patient displays average <strong>Pain Intensity, Physical Function</strong></em></p>
-		</blockquote>
-
-		<h4>Treatment Recommendations:</h4>
-		<p>Will continue to diagnose and treat patient's pain problem. Patient is recommended to practice mindfulness meditation. Patient may benefit from dual use medication for pain and mood and employing non-pharmacologic strategies such as mindfulness meditation and/or CBT. Consider Psychiatry referral. Patient will benefit from improvement in physical function through structured activity, including physical therapy and personalized home exercise program. Patient will benefit from group therapy to foster a support system and appropriate coping strategies. </p>
-	</div>
-</body>
-</html>
+```shell
+> create_reports.py path_to_registration path_to_assessment_scores
+```
+## Output
+See [here](https://rawgit.com/boyercb/nih-toolbox-reports/master/example/CIP2276%202017-05-07.html) for an example report. 
