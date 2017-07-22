@@ -2,9 +2,9 @@
 import sys
 import math
 import pandas
+import pdfkit
 from jinja2 import Environment, FileSystemLoader
 from scipy.stats import norm
-#from weasyprint import HTML
 
 def clean_registry(df):
 	df['PIN'] = df.PIN.str.replace("Cip", "")
@@ -88,9 +88,7 @@ if __name__ == "__main__":
 			}
 
 	html = template.render(template_vars)
-	with open(outfile + ".html", "w") as f:
-		f.write(html)
-	#HTML(string = html).write_pdf(, stylesheets = "")
+	pdfkit.from_string(html, outfile + ".pdf", css = ['css/normalize.css', 'css/skeleton.css'])
 
 
 		
