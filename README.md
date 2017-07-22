@@ -8,4 +8,4 @@ To create a report, you will need the registration and assessment scores CSV fil
 > create_reports.py path_to_registration path_to_assessment_scores
 ```
 ## Output
-See [here](https://rawgit.com/boyercb/nih-toolbox-reports/master/example/CIP2276%202017-05-07.html) for an example report. 
+See [here](example/CIP2276 2017-05-07.pdf) for an example report. 
