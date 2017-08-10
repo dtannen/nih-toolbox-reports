@@ -61,12 +61,16 @@ def create_recommendations(df):
 if __name__ == "__main__":
 	infile1 = sys.argv[1]
 	infile2 = sys.argv[2]
+	infile3 = sys.argv[3]
 
 	registry = pandas.read_csv(infile1)
 	scores = pandas.read_csv(infile2)
+	devices = pandas.read_csv(infile3)
 
 	registry = clean_registry(registry)
 	scores = clean_scores(scores)
+
+	registry = pandas.merge(registry, devices, on = "DeviceID")
 
 	env = Environment(loader = FileSystemLoader("./template/"))
 	template = env.get_template("report.html")
@@ -84,7 +88,9 @@ if __name__ == "__main__":
 				"severe_variables" : create_list(patient_scores, low = 2),
 				"moderate_variables" : create_list(patient_scores, low = 1, high = 2),
 				"average_variables" : create_list(patient_scores, low = 0, high = 1),
-				"treatment_recommendations" : create_recommendations(patient_scores) 
+				"treatment_recommendations" : create_recommendations(patient_scores),
+				"physician" : patient_data.physician.to_string(index = False),
+				"signature" : patient_data.signature.to_string(index = False)
 			}
 
 	html = template.render(template_vars)
