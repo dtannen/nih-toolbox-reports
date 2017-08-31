@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 import sys
 import math
 import pandas
@@ -28,7 +28,7 @@ def create_table(df):
 	df = df.reset_index(drop = True)
 	return df
 
-def create_list(df, low = -math.inf, high = math.inf):
+def create_list(df, low = -float('inf'), high = float('inf')):
 	list = df[(df.SD > low) & (df.SD < high)].variable
 	str = ", ".join(list)
 	return str
