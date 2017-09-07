@@ -12,7 +12,7 @@ def clean_registry(df):
 	return df
 
 def clean_scores(df):
-	df['PIN'] = df.PIN.apply(str)
+	df['PIN'] = df.PIN.str.replace("Cip", "")
 	df['SD'] = (df.TScore - 50) / 10.0
 	df['variable'] = df.Inst.str.extract("\- (.*)", expand = False).str.replace(" 3a", "")
 	df['test_date'] = pandas.to_datetime(df.DateFinished)
@@ -47,16 +47,16 @@ def create_recommendations(df):
 		"Sleep Disturbance" : ""
 	} 
 
-	df['recommendation'] = df.variable.map(db)
-	df['recommendation'] = df.recommendation.where(df.SD > 1, None)
+	recommendation = df.variable.map(db)
+	recommendation = recommendation.where(df.SD > 1, None)
 
 	if df.SD.max() < 1:
-		df['recommendation'] = "None at this time, patient is within normal limits across all domains."
+		recommendation = "None at this time, patient is within normal limits across all domains."
 	elif sum(df.SD.values > 1) > 7: 
-		df['recommendation'] = "Patient displays moderate to severe multidimensional psychological overlay and will require multidisciplinary treatment approach."
+		recommendation = "Patient displays moderate to severe multidimensional psychological overlay and will require multidisciplinary treatment approach."
 
-	df = df.recommendation.dropna()
-	return " ".join(df.unique())
+	recommendation = recommendation.dropna()
+	return " ".join(recommendation.unique())
 
 if __name__ == "__main__":
 	infile1 = sys.argv[1]
@@ -75,10 +75,11 @@ if __name__ == "__main__":
 	env = Environment(loader = FileSystemLoader("./template/"))
 	template = env.get_template("report.html")
 
-	for patient_id in registry.PIN.unique():
+	for patient_id in scores.PIN.unique():
+                print('Creating Report for Patient {0}.'.format(patient_id))
 		patient_data = registry[registry.PIN == patient_id]
 		patient_scores = scores[scores.PIN == patient_id]
-		outfile = patient_data.record_number.to_string(index = False) + " " + patient_scores.test_date.dt.strftime("%Y-%d-%m").max()
+		outfile = patient_data.record_number.to_string(index = False) + " " + str(patient_scores.test_date.dt.strftime("%Y-%d-%m").max())
 		template_vars = {
 				"title" : outfile,
 				"patient_name" : patient_data.Name.to_string(index = False),
