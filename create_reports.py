@@ -76,7 +76,7 @@ if __name__ == "__main__":
 	template = env.get_template("report.html")
 
 	for patient_id in scores.PIN.unique():
-                print('Creating Report for Patient {0}.'.format(patient_id))
+		print('Creating Report for Patient {0}.'.format(patient_id))
 		patient_data = registry[registry.PIN == patient_id]
 		patient_scores = scores[scores.PIN == patient_id]
 		outfile = patient_data.record_number.to_string(index = False) + " " + str(patient_scores.test_date.dt.strftime("%Y-%d-%m").max())
