@@ -12,7 +12,6 @@ def clean_registry(df):
 	return df
 
 def clean_scores(df):
-	df['PIN'] = df.PIN.apply(str)
 	df['PIN'] = df.PIN.str.replace("Cip", "")
 	df['SD'] = (df.TScore - 50) / 10.0
 	df['variable'] = df.Inst.str.extract("\- (.*)", expand = False).str.replace(" 3a", "")
@@ -64,8 +63,8 @@ if __name__ == "__main__":
 	infile2 = sys.argv[2]
 	infile3 = sys.argv[3]
 
-	registry = pandas.read_csv(infile1)
-	scores = pandas.read_csv(infile2)
+        registry = pandas.read_csv(infile1, converters = {'PIN': str})
+        scores = pandas.read_csv(infile2, converters = {'PIN': str})
 	devices = pandas.read_csv(infile3)
 
 	registry = clean_registry(registry)
