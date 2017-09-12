@@ -63,8 +63,8 @@ if __name__ == "__main__":
 	infile2 = sys.argv[2]
 	infile3 = sys.argv[3]
 
-        registry = pandas.read_csv(infile1, converters = {'PIN': str})
-        scores = pandas.read_csv(infile2, converters = {'PIN': str})
+	registry = pandas.read_csv(infile1, converters = {'PIN': str})
+	scores = pandas.read_csv(infile2, converters = {'PIN': str})
 	devices = pandas.read_csv(infile3)
 
 	registry = clean_registry(registry)
