@@ -1,2 +1,8 @@
 PIN,DeviceID,Name,Age,Education,MothersEducation,FathersEducation,GuardiansEducation,StartingLevelOverride,Gender,Handedness,Race,Ethnicity,Assessment Name
-Cip2276,EF056BE8-A8EA-4EFE-A941-23DA01D3E067,Test Subject1,32,25,,,,,2,1,1,1,Assessment 1
+,EF056BE8-A8EA-4EFE-A941-23DA01D3E067,Dora Word,,,,,,,,,0,,Assessment 1
+Cip11089,EF056BE8-A8EA-4EFE-A941-23DA01D3E067,Bernard johnson,47,,,,,,1,,0,,Assessment 1
+Cip113,EF056BE8-A8EA-4EFE-A941-23DA01D3E067,Tamara greenly,56,,,,,,2,,0,,Assessment 1
+Cip13896,EF056BE8-A8EA-4EFE-A941-23DA01D3E067,Virginia marsh,71,,,,,,2,,0,,Assessment 1
+Cip15378,EF056BE8-A8EA-4EFE-A941-23DA01D3E067,Rea neal,26,,,,,,2,,0,,Assessment 1
+Cip15435,EF056BE8-A8EA-4EFE-A941-23DA01D3E067,Mario little,41,,,,,,1,,0,,Assessment 1
+Cip5396,EF056BE8-A8EA-4EFE-A941-23DA01D3E067,Antoinette jackson,51,,,,,,2,,0,,Assessment 1

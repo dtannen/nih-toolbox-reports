@@ -29,7 +29,7 @@ def create_table(df):
 	df = df.reset_index(drop = True)
 	return df
 
-def create_list(df, low = -float('inf'), high = float('inf')):
+def create_list(df, low = -math.inf, high = math.inf):
 	list = df[(df.SD > low) & (df.SD < high)].variable
 	str = ", ".join(list)
 	return str
@@ -75,7 +75,6 @@ if __name__ == "__main__":
 
 	env = Environment(loader = FileSystemLoader("./template/"))
 	template = env.get_template("report.html")
-
 	for patient_id in scores.PIN.unique():
 		print('Creating Report for Patient {0}.'.format(patient_id))
 		patient_data = registry[registry.PIN == patient_id]
@@ -95,8 +94,8 @@ if __name__ == "__main__":
 				"signature" : patient_data.signature.to_string(index = False)
 			}
 
-	html = template.render(template_vars)
-	pdfkit.from_string(html, outfile + ".pdf", css = ['css/normalize.css', 'css/skeleton.css'])
+		html = template.render(template_vars)
+		pdfkit.from_string(html, outfile + ".pdf", css = ['css/normalize.css', 'css/skeleton.css'])
 
 
 		
