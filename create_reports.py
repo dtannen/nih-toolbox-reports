@@ -12,7 +12,7 @@ def clean_registry(df):
 	return df
 
 def clean_scores(df):
-        df['PIN'] = df.PIN.apply(str)
+	df['PIN'] = df.PIN.apply(str)
 	df['PIN'] = df.PIN.str.replace("Cip", "")
 	df['SD'] = (df.TScore - 50) / 10.0
 	df['variable'] = df.Inst.str.extract("\- (.*)", expand = False).str.replace(" 3a", "")
