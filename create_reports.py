@@ -7,12 +7,14 @@ from jinja2 import Environment, FileSystemLoader
 from scipy.stats import norm
 
 def clean_registry(df):
-	df['PIN'] = df.PIN.str.replace("Cip", "")
+        df['PIN'] = df.PIN.str.lower()
+	df['PIN'] = df.PIN.str.replace("cip", "")
 	df['record_number'] = "CIP" + df.PIN
 	return df
 
 def clean_scores(df):
-	df['PIN'] = df.PIN.str.replace("Cip", "")
+        df['PIN'] = df.PIN.str.lower()
+	df['PIN'] = df.PIN.str.replace("cip", "")
 	df['SD'] = (df.TScore - 50) / 10.0
 	df['variable'] = df.Inst.str.extract("\- (.*)", expand = False).str.replace(" 3a", "")
 	df['test_date'] = pandas.to_datetime(df.DateFinished)
@@ -50,9 +52,9 @@ def create_recommendations(df):
 	recommendation = df.variable.map(db)
 	recommendation = recommendation.where(df.SD > 1, None)
 
-	if df.SD.max() < 1:
+	if df.SD.fillna(0).max() < 1:
 		recommendation = "None at this time, patient is within normal limits across all domains."
-	elif sum(df.SD.values > 1) > 7: 
+	elif sum(df.SD.fillna(0).values > 1) > 7: 
 		recommendation = "Patient displays moderate to severe multidimensional psychological overlay and will require multidisciplinary treatment approach."
 
 	recommendation = recommendation.dropna()
