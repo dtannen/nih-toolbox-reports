@@ -7,13 +7,13 @@ from jinja2 import Environment, FileSystemLoader
 from scipy.stats import norm
 
 def clean_registry(df):
-        df['PIN'] = df.PIN.str.lower()
+	df['PIN'] = df.PIN.str.lower()
 	df['PIN'] = df.PIN.str.replace("cip", "")
 	df['record_number'] = "CIP" + df.PIN
 	return df
 
 def clean_scores(df):
-        df['PIN'] = df.PIN.str.lower()
+	df['PIN'] = df.PIN.str.lower()
 	df['PIN'] = df.PIN.str.replace("cip", "")
 	df['SD'] = (df.TScore - 50) / 10.0
 	df['variable'] = df.Inst.str.extract("\- (.*)", expand = False).str.replace(" 3a", "")
