@@ -19,7 +19,6 @@ def clean_scores(df):
 	df['variable'] = df.Inst.str.extract("\- (.*)", expand = False).str.replace(" 3a", "")
 	df['test_date'] = pandas.to_datetime(df.DateFinished)
 	df['percentile'] = norm(50, 10).cdf(df.TScore).round(2) * 100
-	df['percentile'] = df.percentile.astype(int)
 	df['SD'] = df.SD.where(~df.variable.isin(["Emotional Support", "Physical Function"]), -df.SD.values)
 	return df
 
