@@ -50,14 +50,15 @@ def create_recommendations(df):
 
 	recommendation = df.variable.map(db)
 	recommendation = recommendation.where(df.SD > 1, None)
+	recommendation = recommendation.dropna()
+	recommendation = " ".join(recommendation.unique())
 
-	if df.SD.fillna(0).max() < 1:
+	if df.SD.max() < 1:
 		recommendation = "None at this time, patient is within normal limits across all domains."
-	elif sum(df.SD.fillna(0).values > 1) > 7: 
+	elif sum(df.SD.values > 1) > 7: 
 		recommendation = "Patient displays moderate to severe multidimensional psychological overlay and will require multidisciplinary treatment approach."
 
-	recommendation = recommendation.dropna()
-	return " ".join(recommendation.unique())
+	return recommendation
 
 if __name__ == "__main__":
 	infile1 = sys.argv[1]
